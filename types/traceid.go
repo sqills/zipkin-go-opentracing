@@ -27,7 +27,9 @@ func TraceIDFromHex(h string) (t TraceID, err error) {
 // ToHex outputs the 128-bit traceID as hex string.
 func (t TraceID) ToHex() string {
 	if t.High == 0 {
-		return strconv.FormatUint(t.Low, 16)
+		return fmt.Sprintf(
+			"%016s", strconv.FormatUint(t.Low, 16),
+		)
 	}
 	return fmt.Sprintf(
 		"%016s%016s", strconv.FormatUint(t.High, 16), strconv.FormatUint(t.Low, 16),
